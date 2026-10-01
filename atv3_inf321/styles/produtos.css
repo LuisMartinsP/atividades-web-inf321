@@ -1,0 +1,501 @@
+:root {
+    --cor-primaria: #0b0b1e;
+    --cor-lilas: #c8a2ff;
+    --cor-botao: #5b2bd9;
+    --cor-botao-hover: #4520b0;
+    --cor-preco: #15803d;
+    --cor-borda: #d1d5db;
+    --raio: 8px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    color: #111;
+    background: #f9fafb;
+}
+
+/* garante que o atributo hidden funcione mesmo em elementos com display: flex */
+[hidden] {
+    display: none !important;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.site-header {
+    background: var(--cor-primaria);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+    color: #fff;
+}
+
+.logo-icone {
+    width: 32px;
+    height: 32px;
+    fill: var(--cor-lilas);
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.navbar a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0.5rem 0.25rem;
+    transition: color 0.2s;
+}
+
+.navbar a:hover {
+    color: var(--cor-lilas);
+}
+
+/* Carrinho */
+.carrinho {
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 48px;
+    padding: 0 0.75rem;
+    background: var(--cor-primaria);
+    color: var(--cor-lilas);
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 12px;
+}
+
+.carrinho-texto {
+    color: #fff;
+}
+
+/* contador só aparece quando tiver número; os parênteses vêm do CSS */
+.carrinho-contador:empty {
+    display: none;
+}
+
+.carrinho-contador::before {
+    content: "(";
+}
+
+.carrinho-contador::after {
+    content: ")";
+}
+
+.carrinho-icone {
+    width: 24px;
+    height: 24px;
+    fill: var(--cor-lilas);
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 2rem;
+    padding: 1rem 1.5rem 2rem;
+    align-items: start;
+}
+
+.conteudo {
+    min-width: 0;
+}
+
+.conteudo > h2 {
+    margin-top: 0;
+}
+
+.fale-conosco {
+    position: sticky;
+    top: 1rem;
+    background: #fff;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio);
+    padding: 1.25rem;
+}
+
+.fale-conosco h2 {
+    margin-top: 0;
+}
+
+.fale-conosco form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.fale-conosco input,
+.fale-conosco textarea {
+    padding: 0.5rem;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio);
+    font: inherit;
+    resize: vertical;
+}
+
+.fale-conosco label {
+    font-weight: bold;
+}
+
+.obrigatorio {
+    color: #dc2626;
+}
+
+.fale-conosco .btn {
+    margin-top: 0.5rem;
+}
+
+.seguranca {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    margin: 1rem 0 0;
+    color: #9ca3af;
+    font-size: 0.85rem;
+}
+
+.cadeado {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+}
+
+.descricao {
+    margin: 0 0 0.5rem;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+/* Aviso de produto adicionado
+   Fica sempre no HTML; a classe .visivel liga/desliga com transição */
+.aviso {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    overflow: hidden;
+
+    background: rgba(22, 163, 74, 0.12);   /* verde "transparente" */
+    border: 1px solid rgba(22, 163, 74, 0.35);
+    border-radius: var(--raio);
+    color: #166534;
+    font-weight: bold;
+
+    /* estado escondido */
+    max-height: 0;
+    padding: 0 1rem;
+    margin-bottom: 0;
+    opacity: 0;
+    transform: translateY(-8px);
+    visibility: hidden;
+    transition:
+        max-height 0.3s ease,
+        padding 0.3s ease,
+        margin 0.3s ease,
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        visibility 0s linear 0.3s;   /* só some de vez depois da animação */
+}
+
+.aviso.visivel {
+    max-height: 80px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+    transition-delay: 0s;
+}
+
+.aviso-icone {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #16a34a;
+}
+
+.aviso-icone svg {
+    width: 18px;
+    height: 18px;
+    fill: #fff;
+}
+
+.aviso-texto {
+    flex: 1;
+}
+
+.aviso-fechar {
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: #166534;
+    cursor: pointer;
+    padding: 0 0.25rem;
+    opacity: 0.7;
+}
+
+.aviso-fechar:hover {
+    opacity: 1;
+}
+
+/* Mensagem da busca */
+.resultado-busca {
+    margin: 0 0 1rem;
+    color: #555;
+}
+
+/* Validação do formulário */
+.erro {
+    color: #dc2626;
+    font-size: 0.8rem;
+}
+
+.erro:empty {
+    display: none;
+}
+
+.fale-conosco .invalido {
+    border-color: #dc2626;
+}
+
+.sucesso {
+    margin: 1rem 0 0;
+    padding: 0.75rem;
+    background: #dcfce7;
+    color: #166534;
+    border-radius: var(--raio);
+    font-weight: bold;
+    text-align: center;
+}
+
+.produto .btn {
+    width: 100%;
+}
+
+#search-form{
+    margin: 10px 0px 10px 0px;
+}
+
+.search-area {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    height: 50px;
+    border: 2px solid lightgray;
+    border-radius: 5px;
+}
+
+.search-container:focus-within{
+    border: 2px solid var(--cor-botao);
+
+    transition: 0.2s ease;
+}
+
+.search-icon {
+    padding: 0 10px;
+}
+
+#searchInput {
+    flex: 1;
+    height: 100%;
+    border: none;
+    outline: none;
+}
+
+#searchInput::placeholder {
+    color: gray;
+    font-size: 16px;
+    font-style: italic;
+}
+
+#searchInput::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.clear-button {
+    border: none;
+    background: none;
+    font-size: 24px;
+    color: #777;
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+/* X só aparece quando tem texto (placeholder some quando o usuário digita) */
+#searchInput:placeholder-shown + .clear-button {
+    display: none;
+}
+
+.clear-button:hover {
+    color: black;
+}
+
+.search-button {
+    width: 100px;
+    background-color: var(--cor-botao);
+    border: 0px;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.search-button:hover,
+.search-button:focus-visible {
+    background-color: var(--cor-botao-hover);
+}
+
+.produtos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.25rem;
+}
+
+.produto {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    padding: 1.25rem;
+    background: #fff;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio);
+    text-align: left;
+}
+
+.produto img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: var(--raio);
+}
+
+.nome {
+    margin: 0;
+    font-size: 1.15rem;
+}
+
+.preco {
+    margin: 0;
+    color: var(--cor-botao);
+    font-size: 1.15rem;
+    font-weight: bold;
+}
+
+.btn {
+    margin-top: auto;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background: var(--cor-botao);
+    border: 0;
+    border-radius: var(--raio);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn:hover,
+.btn:focus-visible {
+    background: var(--cor-botao-hover);
+}
+
+@media (max-width: 900px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .fale-conosco {
+        position: static;
+    }
+
+    /* header vira 2 linhas: logo + carrinho em cima, nav embaixo */
+    .site-header {
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+            "logo carrinho"
+            "nav  nav";
+        row-gap: 0.5rem;
+    }
+
+    .logo     { grid-area: logo; }
+    .carrinho { grid-area: carrinho; }
+    .navbar   { grid-area: nav; justify-content: center; }
+}
+
+@media (max-width: 600px) {
+    .layout {
+        padding: 1rem 0.75rem;
+    }
+
+    .site-header {
+        padding: 0.75rem;
+    }
+
+    .navbar {
+        gap: 1.5rem;
+    }
+
+    .carrinho-texto {
+        display: none;
+    }
+
+    .search-button {
+        width: 80px;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .produtos {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .produto {
+        padding: 1rem;
+    }
+
+    .nome,
+    .preco {
+        font-size: 1.05rem;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
