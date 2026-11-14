@@ -46,5 +46,11 @@ defmodule HelloWeb.Router do
 
       get "/", HelloController, :index
     end
+
+    scope "/saudacao/:lang/:name", HelloWeb do
+      pipe_through :browser
+
+      get "/", SaudacaoController, :saudacao
+    end
   end
 end
