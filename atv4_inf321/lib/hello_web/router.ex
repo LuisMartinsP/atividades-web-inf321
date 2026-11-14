@@ -18,6 +18,8 @@ defmodule HelloWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/hello", HelloController, :index
+    get "/saudacao/:lang/:name", SaudacaoController, :saudacao
   end
 
   # Other scopes may use custom stacks.
@@ -39,18 +41,6 @@ defmodule HelloWeb.Router do
 
       live_dashboard "/dashboard", metrics: HelloWeb.Telemetry
       forward "/mailbox", Plug.Swoosh.MailboxPreview
-    end
-
-    scope "/hello", HelloWeb do
-      pipe_through :browser
-
-      get "/", HelloController, :index
-    end
-
-    scope "/saudacao/:lang/:name", HelloWeb do
-      pipe_through :browser
-
-      get "/", SaudacaoController, :saudacao
     end
   end
 end
