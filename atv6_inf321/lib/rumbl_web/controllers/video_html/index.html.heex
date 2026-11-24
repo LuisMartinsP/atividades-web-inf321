@@ -1,0 +1,24 @@
+<Layouts.app flash={@flash}>
+  <h1 class="text-2xl font-bold mb-6">Todos os Vídeos</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Título</th>
+        <th>URL</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for video <- @videos do %>
+        <tr>
+          <td>{video.id}</td>
+          <td>{video.title}</td>
+          <td><a href={video.url} target="_blank" class="link">{video.url}</a></td>
+          <td><.link navigate={~p"/videos/#{video.id}"} class="link link-primary">Ver</.link></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</Layouts.app>
