@@ -1,0 +1,11 @@
+<h1>Listing Users</h1>
+<table>
+  <tr :for={user <- @users}>
+    <td><.link href={~p"/users/#{user.id}"}><b>{user.username}</b></.link> ({user.id})</td>
+    <td><.link href={~p"/users/#{user.id}"}>View</.link></td>
+    <td><.link href={~p"/users/#{user}/edit"}>Edit</.link></td>
+    <td><.link href={~p"/users/#{user}"} method="delete" data-confirm="Tem certeza?">Delete</.link></td>
+  </tr>
+</table>
+<p :if={@users == []}>Nenhum usuário cadastrado ainda.</p>
+<.link href={~p"/users/new"}>New User</.link>

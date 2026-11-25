@@ -1,0 +1,32 @@
+<Layouts.app flash={@flash}>
+  <.header>
+    Listing Users
+    <:subtitle>Todos os usuários cadastrados no Rumbl.</:subtitle>
+    <:actions>
+      <.button variant="primary" navigate={~p"/users/new"}>
+        <.icon name="hero-plus" /> New User
+      </.button>
+    </:actions>
+  </.header>
+
+  <.table :if={@users != []} id="users" rows={@users}>
+    <:col :let={user} label="Name">
+      <span class="font-semibold">{user.name}</span>
+      <span class="text-base-content/60">({user.id})</span>
+    </:col>
+    <:col :let={user} label="Username">@{user.username}</:col>
+    <:action :let={user}>
+      <.link navigate={~p"/users/#{user}"} class="link link-primary">View</.link>
+    </:action>
+    <:action :let={user}>
+      <.link navigate={~p"/users/#{user}/edit"} class="link link-primary">Edit</.link>
+    </:action>
+    <:action :let={user}>
+      <.link href={~p"/users/#{user}"} method="delete" data-confirm="Tem certeza?" class="link link-error">
+        Delete
+      </.link>
+    </:action>
+  </.table>
+
+  <p :if={@users == []} class="text-base-content/60">Nenhum usuário cadastrado ainda.</p>
+</Layouts.app>

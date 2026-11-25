@@ -1,0 +1,20 @@
+<Layouts.app flash={@flash}>
+  <.header>
+    Edit User
+    <:subtitle>Editando @{@user.username}.</:subtitle>
+  </.header>
+
+  <div :if={@changeset.action} role="alert" class="alert alert-error alert-soft mb-4">
+    <.icon name="hero-exclamation-circle" class="size-5" />
+    <span>Oops, something went wrong! Please check the errors below.</span>
+  </div>
+
+  <.form :let={f} for={@changeset} action={~p"/users/#{@user}"}>
+    <.input field={f[:name]} type="text" label="Name" placeholder="Name" />
+    <.input field={f[:username]} type="text" label="Username" placeholder="Username" />
+    <div class="mt-4 flex gap-2">
+      <.button variant="primary">Save User</.button>
+      <.button navigate={~p"/users/#{@user}"}>Cancel</.button>
+    </div>
+  </.form>
+</Layouts.app>

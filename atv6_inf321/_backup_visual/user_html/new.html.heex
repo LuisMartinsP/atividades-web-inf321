@@ -1,0 +1,17 @@
+<h1>New User</h1>
+<%= if @changeset.action do %>
+    <div class="alert alert-danger">
+    <p>Oops, something went wrong! Please check errors.</p>
+    </div>
+<% end %>
+<.form :let={f} for={@changeset} action={~p"/users"}>
+  <div>
+    <.input field={f[:name]} type="text" placeholder="Name" />
+  </div>
+  <div>
+    <.input field={f[:username]} type="text" placeholder="Username" />
+  </div>
+  <div>
+    <.button>Create User</.button>
+  </div>
+</.form>

@@ -1,0 +1,22 @@
+<Layouts.app flash={@flash}>
+  <.header>
+    {@user.name}
+    <:subtitle>Usuário #{@user.id}</:subtitle>
+    <:actions>
+      <.button navigate={~p"/users/#{@user}/edit"}>
+        <.icon name="hero-pencil-square" /> Edit
+      </.button>
+    </:actions>
+  </.header>
+
+  <.list>
+    <:item title="Name">{@user.name}</:item>
+    <:item title="Username">@{@user.username}</:item>
+  </.list>
+
+  <div class="mt-6">
+    <.button navigate={~p"/users"}>
+      <.icon name="hero-arrow-left" /> Back
+    </.button>
+  </div>
+</Layouts.app>

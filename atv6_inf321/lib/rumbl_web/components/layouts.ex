@@ -35,15 +35,13 @@ defmodule RumblWeb.Layouts do
 
   def app(assigns) do
     ~H"""
-    <div class="flex min-h-screen">
-      <aside class="w-48 shrink-0 bg-neutral text-neutral-content p-4">
-        <.link navigate={~p"/videos"} class="text-lg font-semibold">Rumbl</.link>
-      </aside>
-
-      <main class="flex-1 p-8">
-        {render_slot(@inner_block)}
-      </main>
-    </div>
+    <main class="min-h-screen bg-base-200 p-8">
+      <div class="mx-auto max-w-3xl card bg-base-100 shadow-sm">
+        <div class="card-body">
+          {render_slot(@inner_block)}
+        </div>
+      </div>
+    </main>
 
     <.flash_group flash={@flash} />
     """
